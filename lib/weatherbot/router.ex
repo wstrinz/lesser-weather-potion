@@ -10,7 +10,7 @@ defmodule Weatherbot.Router do
   post "/webhook" do
     spawn fn -> Weatherbot.SlackReceiver.handle_message(conn.params) end
 
-    send_resp(conn, 200, "gotcha")
+    send_resp(conn, 200, "ack")
   end
 
   get "/hello" do
