@@ -1,8 +1,19 @@
 defmodule WeatherbotTest do
   use ExUnit.Case
+  use Plug.Test
+
   doctest Weatherbot
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  alias Weatherbot.Router
+
+  @opts Router.init([])
+
+  test "responds to greeting" do
+    conn = conn(:get, "/hello", "")
+           |> Router.call(@opts)
+
+    assert conn.state == :sent
+    assert conn.status == 200
+    assert conn.resp_body == "ohai"
   end
 end
