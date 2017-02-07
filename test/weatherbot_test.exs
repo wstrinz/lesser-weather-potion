@@ -1,5 +1,5 @@
 defmodule WeatherbotTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use Plug.Test
 
   doctest Weatherbot

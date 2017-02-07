@@ -32,6 +32,7 @@ defmodule Weatherbot.Mixfile do
      {:plug, "~> 1.0"},
      {:slack_webhook, "~> 0.1.0"},
      {:floki, "~> 0.11.0"},
+     {:dialyxir, "~> 0.4", only: [:dev], runtime: false},
      {:poison, "~> 3.0"}]
   end
 end
