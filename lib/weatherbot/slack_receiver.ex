@@ -11,7 +11,11 @@ defmodule Weatherbot.SlackReceiver do
   end
 
   def help_msg do
-    "Usage: `forecast_discussion <city_code>`"
+    ~s"""
+    Usage:
+    Daily/hourly forecast: `get_forecast`
+    Forecast discussion: `forecast_discussion <city_code>`
+    """
   end
 
   def response_for_parsed_message([ cmd | rest]) do
