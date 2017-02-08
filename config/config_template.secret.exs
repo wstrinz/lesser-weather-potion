@@ -4,4 +4,4 @@ use Mix.Config
 
 config :weatherbot, incoming_slack_webhook: "<WEBHOOK URL>"
 
-config :weatherbot, darksky_key: "DARKSKY KEY"
+config :weatherbot, darksky_key: "<DARKSKY KEY>"
