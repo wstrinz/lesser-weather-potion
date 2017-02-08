@@ -4,3 +4,5 @@ use Mix.Config
 
 config :slack_webhook, :url,
  "WEBHOOK URL GOES HERE"
+
+config :weatherbot, forecastio_key: "FORECASTIO KEY"
