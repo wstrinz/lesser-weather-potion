@@ -1,6 +1,6 @@
 defmodule Weatherbot.WeatherFetcher do
   @url_base "http://forecast.weather.gov/product.php?site=CRH&product=AFD&issuedby="
-  @forecastio_url "https://api.forecast.io/forecast/#{Application.get_env(:weatherbot, :forecastio_key)}/43.063929,-89.414104"
+  @darksky_url "https://api.forecast.io/forecast/#{Application.get_env(:weatherbot, :darksky_key)}/43.063929,-89.414104"
   @default_station "MKX"
 
   def url_for_site(site_code) do
@@ -16,7 +16,7 @@ defmodule Weatherbot.WeatherFetcher do
   end
 
   def get_forecast do
-    HTTPoison.get!(@forecastio_url).body
+    HTTPoison.get!(@darksky_url).body
     |> Poison.Parser.parse!
   end
 

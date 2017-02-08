@@ -39,25 +39,25 @@ defmodule WeatherbotTest do
   # end
 
   test "fetches hourly weather" do
-    use_cassette "forecastio" do
+    use_cassette "darksky" do
       assert WF.hourly_forecast == "Partly cloudy until tomorrow morning."
     end
   end
 
   test "fetches daily weather" do
-    use_cassette "forecastio" do
-      assert WF.daily_forecast == "No precipitation throughout the week, with temperatures rising to 48°F on Tuesday."
+    use_cassette "darksky" do
+      assert WF.daily_forecast == "Light rain on Sunday, with temperatures rising to 46°F on Monday."
     end
   end
 
-  test "forecastio casts" do
-    use_cassette "forecastio" do
+  test "darksky casts" do
+    use_cassette "darksky" do
       assert WF.daily_and_hourly_forecasts == ~s"""
       Hourly
       Partly cloudy until tomorrow morning.
 
       Daily
-      No precipitation throughout the week, with temperatures rising to 48°F on Tuesday.
+      Light rain on Sunday, with temperatures rising to 46°F on Monday.
       """
     end
   end

@@ -2,7 +2,6 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :slack_webhook, :url,
- "WEBHOOK URL GOES HERE"
+config :weatherbot, incoming_slack_webhook: "<WEBHOOK URL>"
 
-config :weatherbot, forecastio_key: "FORECASTIO KEY"
+config :weatherbot, darksky_key: "DARKSKY KEY"

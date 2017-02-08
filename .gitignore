@@ -19,5 +19,5 @@ erl_crash.dump
 # Secrets
 config/config.secret.exs
 
-# ExVCR fixtures; still working on a way to scrub out the forecastio key for these
+# ExVCR fixtures; still working on a way to scrub out the darksky key for these
 fixture/
