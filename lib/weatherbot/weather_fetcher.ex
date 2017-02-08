@@ -1,5 +1,5 @@
 defmodule Weatherbot.WeatherFetcher do
-  @darksky_url "https://api.forecast.io/forecast/#{Application.get_env(:weatherbot, :darksky_key)}/43.063929,-89.414104"
+  @darksky_url "https://api.forecast.io/forecast/#{Application.get_env(:weatherbot, :darksky_key)}/43.074458,-89.380778"
 
   def get_forecast do
     HTTPoison.get!(@darksky_url).body
