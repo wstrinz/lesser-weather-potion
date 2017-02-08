@@ -32,6 +32,16 @@ defmodule Weatherbot.WeatherFetcher do
     |> Map.get("summary")
   end
 
+  def daily_and_hourly_forecasts do
+    ~s"""
+    Hourly
+    #{hourly_forecast}
+
+    Daily
+    #{daily_forecast}
+    """
+  end
+
   def parsed_forecast(forecast_body) do
     forecast_body
     |> Floki.parse

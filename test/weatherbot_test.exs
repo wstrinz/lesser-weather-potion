@@ -24,19 +24,19 @@ defmodule WeatherbotTest do
     assert conn.resp_body == "ohai"
   end
 
-  test "fetches some weather" do
-    use_cassette "forecast_discussion" do
-      body = URI.encode_query(%{"text" => "wb get_forecast MKX"})
-      conn = conn(:post, "/webhook", body)
-             |> put_req_header("content-type", "application/x-www-form-urlencoded")
-             |> Router.call(@opts)
-
-      assert conn.params["text"]
-      assert conn.state == :sent
-      assert conn.status == 200
-      assert conn.resp_body == ~s({"text":"ok"})
-    end
-  end
+  # test "fetches some weather" do
+  #   use_cassette "forecast_discussion" do
+  #     body = URI.encode_query(%{"text" => "wb get_forecast MKX"})
+  #     conn = conn(:post, "/webhook", body)
+  #            |> put_req_header("content-type", "application/x-www-form-urlencoded")
+  #            |> Router.call(@opts)
+  #
+  #     assert conn.params["text"]
+  #     assert conn.state == :sent
+  #     assert conn.status == 200
+  #     assert conn.resp_body == ~s({"text":"ok"})
+  #   end
+  # end
 
   test "fetches hourly weather" do
     use_cassette "forecastio" do
@@ -47,6 +47,18 @@ defmodule WeatherbotTest do
   test "fetches daily weather" do
     use_cassette "forecastio" do
       assert WF.daily_forecast == "No precipitation throughout the week, with temperatures rising to 48°F on Tuesday."
+    end
+  end
+
+  test "forecastio casts" do
+    use_cassette "forecastio" do
+      assert WF.daily_and_hourly_forecasts == ~s"""
+      Hourly
+      Partly cloudy until tomorrow morning.
+
+      Daily
+      No precipitation throughout the week, with temperatures rising to 48°F on Tuesday.
+      """
     end
   end
 end
