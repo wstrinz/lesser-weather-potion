@@ -1,18 +1,23 @@
 defmodule Weatherbot.SlackReceiver do
   @default_ignore_list ~w{AVIATION... MARINE... .AVIATION .MARINE}
 
-  def handle_forecast_request([code | _otherstuff]) do
+  def handle_forecast_discussion_request([code | _otherstuff]) do
     Weatherbot.WeatherFetcher.get_section_list(code, @default_ignore_list)
     |> Enum.join("\n")
   end
 
+  def handle_forecast_request do
+    Weatherbot.WeatherFetcher.daily_and_hourly_forecasts
+  end
+
   def help_msg do
-    "Usage: `get_forecast <city_code>`"
+    "Usage: `forecast_discussion <city_code>`"
   end
 
   def response_for_parsed_message([ cmd | rest]) do
     case cmd do
-      "get_forecast" -> handle_forecast_request(rest)
+      "forecast_discussion" -> handle_forecast_discussion_request(rest)
+      "get_forecast" -> handle_forecast_request
       _ -> help_msg
     end
   end
