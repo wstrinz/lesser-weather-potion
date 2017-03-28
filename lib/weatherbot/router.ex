@@ -8,7 +8,10 @@ defmodule Weatherbot.Router do
   plug :dispatch
 
   post "/webhook" do
-    spawn fn -> Weatherbot.SlackReceiver.handle_message(conn.params) end
+    spawn fn ->
+      Weatherbot.WeatherFetcher.daily_and_hourly_forecasts
+      |> Weatherbot.SlackSender.sendmsg
+    end
 
     send_resp(conn, 200, ~s({"text":"ok"}))
   end
